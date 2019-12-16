@@ -13,18 +13,37 @@
 		<junit.version>4.12</junit.version>
 		<maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
 		<maven.jar.plugin.version>2.4</maven.jar.plugin.version>
+		<maven.surefire.plugin.version>3.0.0-M4</maven.surefire.plugin.version>
+		<powermock.version>2.0.4</powermock.version>
 	</properties>
 
 	<dependencies>
+		<!-- Junit dependency for executing unit test cases -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 		</dependency>
+		<!-- Powermock dependency for Junit 4 compatiable testing -->
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Powermock dependency for Mockito compatiable testing -->
+		<!-- <dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>1.7.4</version>
+			<scope>test</scope>
+		</dependency> -->
+
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!-- Maven compiler plugin to setup the correct java compiler -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -47,6 +66,12 @@
 						</manifest>
 					</archive>
 				</configuration>
+			</plugin>
+			<!-- Maven surefire plugin for running test cases using maven goal -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
 			</plugin>
 			<!-- Creates Executable Jar with all the dependencies -->
 			<plugin>
